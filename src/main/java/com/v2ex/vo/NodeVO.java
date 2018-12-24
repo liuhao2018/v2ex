@@ -1,25 +1,18 @@
-package com.v2ex.entity;
+package com.v2ex.vo;
 
-import javax.persistence.*;
-import java.util.Date;
 
 /**
  * @Auther: liuhao
- * @Date: 2018/12/21 16:38
+ * @Date: 2018/12/24 10:26
  * @Description:
  */
-@Entity
-@Table(name = "node")
-public class Node {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class NodeVO {
     private Integer id;
-    private Date createDate;
     private String name;
     private Integer top;
     private Integer parentId;
 
-    public Node() {
+    public NodeVO() {
     }
 
     public Integer getId() {
@@ -28,14 +21,6 @@ public class Node {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
     }
 
     public String getName() {
@@ -64,12 +49,11 @@ public class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "NodeVO{" +
                 "id=" + id +
-                ", createDate=" + createDate +
                 ", name='" + name + '\'' +
                 ", top=" + top +
-                ", parentId='" + parentId + '\'' +
+                ", parentId=" + parentId +
                 '}';
     }
 }

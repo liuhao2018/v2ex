@@ -2,6 +2,9 @@ package com.v2ex.mapper;
 
 import com.v2ex.entity.Node;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Auther: liuhao
@@ -10,4 +13,8 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface NodeMapper extends tk.mybatis.mapper.common.Mapper<Node> {
+
+    @Select("select * from node where id in (select nid from category_node where cid = #{categoryId})")
+    List<Node> findNodeByCategory(Integer categoryId);
+
 }

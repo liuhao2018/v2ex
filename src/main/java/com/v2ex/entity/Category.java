@@ -5,21 +5,19 @@ import java.util.Date;
 
 /**
  * @Auther: liuhao
- * @Date: 2018/12/21 16:38
+ * @Date: 2018/12/22 11:02
  * @Description:
  */
 @Entity
-@Table(name = "node")
-public class Node {
+@Table(name = "category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Date createDate;
     private String name;
-    private Integer top;
-    private Integer parentId;
 
-    public Node() {
+    public Category() {
     }
 
     public Integer getId() {
@@ -46,30 +44,12 @@ public class Node {
         this.name = name;
     }
 
-    public Integer getTop() {
-        return top;
-    }
-
-    public void setTop(Integer top) {
-        this.top = top;
-    }
-
-    public Integer getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(Integer parentId) {
-        this.parentId = parentId;
-    }
-
     @Override
     public String toString() {
-        return "Node{" +
+        return "Category{" +
                 "id=" + id +
                 ", createDate=" + createDate +
                 ", name='" + name + '\'' +
-                ", top=" + top +
-                ", parentId='" + parentId + '\'' +
                 '}';
     }
 }

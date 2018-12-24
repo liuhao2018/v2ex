@@ -14,10 +14,13 @@ public class Topic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(name = "create_date")
     private Date createDate;
     private String title;
     private String content;
+    @Column(name = "node_id")
     private Integer nodeId;
+    @Column(name = "user_id")
     private Integer userId;
 
     public Topic() {

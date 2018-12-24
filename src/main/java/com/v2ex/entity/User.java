@@ -18,6 +18,7 @@ public class User {
     private String password;
     private String email;
     private String mobile;
+    private String avatar;
     private Date createDate;
 
     public User() {
@@ -63,6 +64,14 @@ public class User {
         this.mobile = mobile;
     }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -79,7 +88,8 @@ public class User {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", createDate='" + createDate + '\'' +
+                ", avatar='" + avatar + '\'' +
+                ", createDate=" + createDate +
                 '}';
     }
 }

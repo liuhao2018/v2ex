@@ -7,7 +7,7 @@ package com.v2ex.bo;
  */
 public class NodeBO {
     private String name;
-    private Boolean top;
+    private Integer top;
     private Integer parentId;
 
     public NodeBO() {
@@ -21,11 +21,11 @@ public class NodeBO {
         this.name = name;
     }
 
-    public Boolean getTop() {
+    public Integer getTop() {
         return top;
     }
 
-    public void setTop(Boolean top) {
+    public void setTop(Integer top) {
         this.top = top;
     }
 

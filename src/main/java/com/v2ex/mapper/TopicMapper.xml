@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.v2ex.mapper.TopicMapper">
+    <resultMap id="findTopicByCategoryMap" type="com.v2ex.vo.TopicVO">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="userName" column="user_name"/>
+        <result property="nodeName" column="node_name"/>
+        <result property="userAvatar" column="avatar"/>
+        <result property="createDate" column="create_date"/>
+        <collection property="commentVOList" ofType="com.v2ex.vo.CommentVO">
+            <id property="id" column="comment_id"/>
+            <result property="content" column="comment_content"/>
+            <result property="createDate" column="comment_create_date"/>
+            <result property="userName" column="comment_author_name"/>
+        </collection>
+    </resultMap>
+    <select id="findTopicByCategory" parameterType="int" resultMap="findTopicByCategoryMap">
+       SELECT aa.*,uu.user_name as comment_author_name  FROM ( SELECT t.*,
+        u.user_name,u.avatar,
+        n.name as node_name,
+        c.id as comment_id,c.content as comment_content,c.create_date as comment_create_date,c.user_id as comment_author_id
+        FROM topic t
+        JOIN user u ON t.user_id = u.id
+        JOIN node n on t.node_id = n.id
+        left join comment c ON t.id = c.topic_id
+        WHERE node_id in
+        (SELECT nid FROM category_node WHERE cid = #{categoryId}   )
+          ) aa LEFT JOIN `user` uu ON aa.comment_author_id = uu.id
+          ORDER BY aa.comment_create_date DESC;
+    </select>
+</mapper>

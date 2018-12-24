@@ -4,12 +4,12 @@ import com.v2ex.bo.TopicBO;
 import com.v2ex.entity.Topic;
 import com.v2ex.service.TopicService;
 import com.v2ex.vo.CommonResponseVO;
+import com.v2ex.vo.TopicVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @Auther: liuhao
@@ -36,6 +36,16 @@ public class TopicController {
         }
         vo.setCode(-1);
         vo.setMessage("error");
+        return vo;
+    }
+
+    @GetMapping
+    public CommonResponseVO<List<TopicVO>> findTopicByCategory(@RequestParam("categoryId")Integer categoryId) {
+        CommonResponseVO vo = new CommonResponseVO();
+        List<TopicVO> list = topicService.findTopicByCategory(categoryId);
+        vo.setCode(0);
+        vo.setMessage("ok");
+        vo.setData(list);
         return vo;
     }
 

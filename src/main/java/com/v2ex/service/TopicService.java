@@ -2,10 +2,12 @@ package com.v2ex.service;
 
 import com.v2ex.entity.Topic;
 import com.v2ex.mapper.TopicMapper;
+import com.v2ex.vo.TopicVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: liuhao
@@ -18,10 +20,13 @@ public class TopicService {
     @Autowired
     private TopicMapper topicMapper;
 
-
     public int save(Topic topic) {
         topic.setCreateDate(new Date());
         return topicMapper.insertSelective(topic);
+    }
+
+    public List<TopicVO> findTopicByCategory(Integer categoryId) {
+        return topicMapper.findTopicByCategory(categoryId);
     }
 
 }

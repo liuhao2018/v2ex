@@ -6,7 +6,6 @@ import com.v2ex.entity.User;
 import com.v2ex.service.UserService;
 import com.v2ex.vo.CommonResponseVO;
 import com.v2ex.vo.TokenVO;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,7 +42,7 @@ public class UserController {
     public CommonResponseVO<TokenVO> login(@RequestBody UserLoginBO userLoginBO) {
         CommonResponseVO<TokenVO> vo = new CommonResponseVO<>();
         String token = userService.login(userLoginBO.getAccount(),userLoginBO.getPassword());
-        if (StringUtils.isNotBlank(token)) {
+        if (token != null) {
             vo.setCode(0);
             vo.setMessage("ok");
             TokenVO tokenVO = new TokenVO();

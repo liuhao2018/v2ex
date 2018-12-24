@@ -1,7 +1,10 @@
 package com.v2ex.mapper;
 
 import com.v2ex.entity.Topic;
+import com.v2ex.vo.TopicVO;
 import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
 
 /**
  * @Auther: liuhao
@@ -10,4 +13,5 @@ import tk.mybatis.mapper.common.Mapper;
  */
 @org.apache.ibatis.annotations.Mapper
 public interface TopicMapper extends Mapper<Topic> {
+    List<TopicVO> findTopicByCategory(Integer categoryId);
 }

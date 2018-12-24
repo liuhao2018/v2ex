@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Auther: liuhao
@@ -22,6 +23,10 @@ public class NodeService {
     public int save(Node node) {
         node.setCreateDate(new Date());
         return nodeMapper.insertSelective(node);
+    }
+
+    public List<Node> findNodeByCategory(Integer categoryId) {
+        return nodeMapper.findNodeByCategory(categoryId);
     }
 
 }
