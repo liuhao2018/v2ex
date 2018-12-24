@@ -1,5 +1,7 @@
 package com.v2ex.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +17,11 @@ public class TopicVO {
     private String userAvatar;
     private String nodeName;
     private Date createDate;
+    private Integer totalComment;
+    @JsonIgnore
     private List<CommentVO> commentVOList;
+
+    private CommentVO lastComment;
 
     public TopicVO() {
     }
@@ -74,5 +80,21 @@ public class TopicVO {
 
     public void setCommentVOList(List<CommentVO> commentVOList) {
         this.commentVOList = commentVOList;
+    }
+
+    public CommentVO getLastComment() {
+        return lastComment;
+    }
+
+    public void setLastComment(CommentVO lastComment) {
+        this.lastComment = lastComment;
+    }
+
+    public Integer getTotalComment() {
+        return totalComment;
+    }
+
+    public void setTotalComment(Integer totalComment) {
+        this.totalComment = totalComment;
     }
 }

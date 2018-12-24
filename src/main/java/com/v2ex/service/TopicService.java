@@ -26,7 +26,14 @@ public class TopicService {
     }
 
     public List<TopicVO> findTopicByCategory(Integer categoryId) {
-        return topicMapper.findTopicByCategory(categoryId);
+        List<TopicVO> list = topicMapper.findTopicByCategory(categoryId);
+        if (list != null && list.size() > 0) {
+            for (TopicVO topicVO :list) {
+                topicVO.setTotalComment(topicVO.getCommentVOList().size() == 0 ? 0:topicVO.getCommentVOList().size());
+                topicVO.setLastComment(topicVO.getCommentVOList().size() == 0 ? null:topicVO.getCommentVOList().get(0));
+            }
+        }
+        return list;
     }
 
 }
