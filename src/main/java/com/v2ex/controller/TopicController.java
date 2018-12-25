@@ -1,6 +1,7 @@
 package com.v2ex.controller;
 
 import com.v2ex.bo.TopicBO;
+import com.v2ex.entity.Comment;
 import com.v2ex.entity.Topic;
 import com.v2ex.service.TopicService;
 import com.v2ex.vo.CommonResponseVO;
@@ -43,6 +44,16 @@ public class TopicController {
     public CommonResponseVO<List<TopicVO>> findTopicByCategory(@RequestParam("categoryId")Integer categoryId) {
         CommonResponseVO vo = new CommonResponseVO();
         List<TopicVO> list = topicService.findTopicByCategory(categoryId);
+        vo.setCode(0);
+        vo.setMessage("ok");
+        vo.setData(list);
+        return vo;
+    }
+
+    @GetMapping("/{topicId}/comment")
+    public CommonResponseVO<List<Comment>> findCommentByTopicId(@PathVariable("topicId")Integer topicId) {
+        CommonResponseVO vo = new CommonResponseVO();
+        List<Comment> list = topicService.findCommentByTopicId(topicId);
         vo.setCode(0);
         vo.setMessage("ok");
         vo.setData(list);
